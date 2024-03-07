@@ -41,23 +41,28 @@ public class LanguageModel {
 	public void calculateProbabilities(List probs) {				
 		// Your code goes here
 	}
-
+	
+	/**
     // Returns a random character from the given probabilities list.
 	public char getRandomChar(List probs) {
 		// Your code goes here
 	}
-
+	*/
+	
+	
     /**
 	 * Generates a random text, based on the probabilities that were learned during training. 
 	 * @param initialText - text to start with. If initialText's last substring of size numberOfLetters
 	 * doesn't appear as a key in Map, we generate no text and return only the initial text. 
 	 * @param numberOfLetters - the size of text to generate
 	 * @return the generated text
-	 */
+	 
 	public String generate(String initialText, int textLength) {
 		// Your code goes here
 	}
-
+	*/
+	
+	
     /** Returns a string representing the map of this language model. */
 	public String toString() {
 		StringBuilder str = new StringBuilder();
