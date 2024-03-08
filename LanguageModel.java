@@ -81,7 +81,7 @@ public class LanguageModel {
 	 * @return the generated text
 	 */
 	public String generate(String initialText, int textLength) {
-		String str="";
+		String str=" ";
 		return str;
 	}
 
