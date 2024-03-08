@@ -54,6 +54,7 @@ public class LanguageModel {
 				current.cp.cp=cumuProab;
 				current=current.next;
 			}
+		}
 	}
 
 
