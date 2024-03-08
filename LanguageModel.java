@@ -39,39 +39,38 @@ public class LanguageModel {
     // Computes and sets the probabilities (p and cp fields) of all the
 	// characters in the given list. */
 	public void calculateProbabilities(List probs) {				
-    int totalChars = probs.getSize();
-    Node current = probs.first;
-    double cumulativeProbability = 0.0;
-    
-    while (current != null) {
-        // Calculate probability for each character
-        double probability = (double) current.cp.getCount() / totalChars;
-        
-        // Set the probability and cumulative probability for the current CharData object
-        current.cp.setP(probability);
-        cumulativeProbability += probability;
-        current.cp.setCp(cumulativeProbability);
-        
-        // Move to the next node
-        current = current.next;
-    }
-}
+		int chrTotal = 0;
+		Node current = probs.getFirstNode();
+		while (current != null) {
+			chrTotal += current.cp.count;
+			current = current.next;
+                   }
+			current=probs.getFirstNode();
+			double cumuProab=0.0;
+			while (current !=null){
+				current.cp.p=(double)current.cp.count/chrTotal;
+				
+				cumuProab+=current.cp.p;
+				current.cp.cp=cumuProab;
+				current=current.next;
+			}
+	}
+
 
     // Returns a random character from the given probabilities list.
 	public char getRandomChar(List probs) {
-    double rand = randomGenerator.nextDouble(); // Generate a random number between 0 and 1
-    Node current = probs.first;
-    
-    while (current != null) {
-        if (rand < current.cp.getCp()) {
-            return current.cp.getChr(); // Return the character if the random number is less than its cumulative probability
-        }
-        current = current.next;
-    }
-    
-    // If no character is found (should not happen if probabilities are correctly calculated)
-    return '\0'; // Or handle this case according to your application's logic
-}
+		double random=randomGenerator.nextDouble();
+		char res=0;
+		Node current=probs.getFirstNode();
+		while(current !=null){
+			if (random<current.cp.cp){
+				res=current.cp.chr;
+				break;
+			}
+			current=current.next;
+		}
+		return res;
+	}
 
     /**
 	 * Generates a random text, based on the probabilities that were learned during training. 
@@ -81,7 +80,8 @@ public class LanguageModel {
 	 * @return the generated text
 	 */
 	public String generate(String initialText, int textLength) {
-		// Your code goes here
+		String str="";
+		return str;
 	}
 
     /** Returns a string representing the map of this language model. */
@@ -97,4 +97,3 @@ public class LanguageModel {
     public static void main(String[] args) {
 		// Your code goes here
     }
-}
