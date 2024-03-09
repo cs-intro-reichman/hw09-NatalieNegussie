@@ -33,18 +33,42 @@ public class LanguageModel {
 
     /** Builds a language model from the text in the given file (the corpus). */
 	public void train(String fileName) {
-		// Your code goes here
+		
 	}
 
     // Computes and sets the probabilities (p and cp fields) of all the
 	// characters in the given list. */
 	public void calculateProbabilities(List probs) {				
-		// Your code goes here
+		int chrTotal = 0;
+		Node current = probs.getFirstNode(); 
+		while (current != null) {
+			chrTotal += current.cp.count;
+			current = current.next;
+                   }
+			current=probs.getFirstNode();
+			double cumuProab=0.0;
+			while (current !=null){
+				current.cp.p=(double)current.cp.count/chrTotal;
+				
+				cumuProab+=current.cp.p;
+				current.cp.cp=cumuProab;
+				current=current.next;
+			}
 	}
 
     // Returns a random character from the given probabilities list.
 	public char getRandomChar(List probs) {
-		// Your code goes here
+		double random=randomGenerator.nextDouble();
+		char res=0;
+		Node current=probs.getFirstNode();
+		while(current !=null){
+			if (random<current.cp.cp){
+				res=current.cp.chr;
+				break;
+			}
+			current=current.next;
+		}
+		return res;
 	}
 
     /**
@@ -55,7 +79,8 @@ public class LanguageModel {
 	 * @return the generated text
 	 */
 	public String generate(String initialText, int textLength) {
-		// Your code goes here
+		String str=" ";
+		return str ;
 	}
 
     /** Returns a string representing the map of this language model. */
